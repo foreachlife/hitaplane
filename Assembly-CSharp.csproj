@@ -50,12 +50,15 @@
      <Compile Include="Assets\script\Bullet.cs" />
      <Compile Include="Assets\script\Enemy.cs" />
      <Compile Include="Assets\script\Enemy2.cs" />
+     <Compile Include="Assets\script\EnemyBullet.cs" />
      <Compile Include="Assets\script\EnemyMaker.cs" />
+     <Compile Include="Assets\script\EnemyWeapon.cs" />
      <Compile Include="Assets\script\Food.cs" />
      <Compile Include="Assets\script\God.cs" />
      <Compile Include="Assets\script\Hero.cs" />
      <Compile Include="Assets\script\UiController.cs" />
      <Compile Include="Assets\script\Weapon.cs" />
+     <Compile Include="Assets\script\bgMove.cs" />
      <Compile Include="Assets\script\boss.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

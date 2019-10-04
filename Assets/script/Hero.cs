@@ -10,7 +10,7 @@ public class Hero : MonoBehaviour
     private int y;
     public static Hero _hero;
 
-    
+
 
     public static Hero getHero
     {
@@ -21,17 +21,17 @@ public class Hero : MonoBehaviour
     }
 
     private Vector3 hero;
-    
+
     private float volitory = 0.2f;
 
     void Awake()
     {
-       
+
         _hero = this;
     }
     void Start()
     {
-       
+
     }
 
 
@@ -158,7 +158,11 @@ public class Hero : MonoBehaviour
         if (collider.gameObject.CompareTag("enemy"))
         {
             Die();
-        } 
+        }
+        else if (collider.gameObject.CompareTag("enemyBullet"))
+        {
+            Die();
+        }
 
     }
 
@@ -168,11 +172,12 @@ public class Hero : MonoBehaviour
         hero = gameObject.transform.localPosition;
         gameObject.transform.localPosition = new Vector3(hero.x + x, hero.y + y, hero.z);
         Destroy(this);
-        int score=UiController.Instance.score;
-        PlayerPrefs.SetInt("lastScore",score);
+        int score = UiController.Instance.score;
+        PlayerPrefs.SetInt("lastScore", score);
 
-        if(PlayerPrefs.GetInt("bestScore")<score){
-            PlayerPrefs.SetInt("bestScore",score);
+        if (PlayerPrefs.GetInt("bestScore") < score)
+        {
+            PlayerPrefs.SetInt("bestScore", score);
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }

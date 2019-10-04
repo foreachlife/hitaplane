@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 public class Bullet : MonoBehaviour
 {
 
@@ -20,22 +19,23 @@ public class Bullet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            speed = speed * 6;
+            speed = speed * 3;
         }
         float res = Weapon.GetWeapon.transform.position.x-transform.position.x;
         int result = res > 0 ? 1 : res < 0 ? -1 : 0;
         switch (result)
         {
             case -1:
-                transform.Translate(new Vector2(1, 11) * speed * Time.deltaTime);
+                transform.Translate(new Vector2(0, 11) * speed * Time.deltaTime);
                 break;
-            case 1:
-                transform.Translate(new Vector2(-1, 11) * speed * Time.deltaTime);
+            case  1:
+                transform.Translate(new Vector2(0,11) * speed * Time.deltaTime);
                 break;
             default:
-                transform.Translate(Vector2.up * speed * Time.deltaTime*8);
+               
                 break;
         }
+         transform.Translate(Vector2.up * speed * Time.deltaTime*8);
     }
 
 

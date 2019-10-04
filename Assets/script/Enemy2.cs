@@ -13,7 +13,9 @@ public class Enemy2 : MonoBehaviour {
     public Sprite[] enemyImg2;
 
     private int life = 10;
+
     private Transform bg;
+    
     private int i = 0;
 
     void Start()

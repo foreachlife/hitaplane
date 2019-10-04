@@ -16,11 +16,13 @@ public class Food : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("hero")||collider.gameObject.CompareTag("border"))
+        if (collider.gameObject.CompareTag("hero"))
         {
 		   Weapon.GetWeapon.isfireOpen=true;
            Destroy(this.gameObject);
-        }
+        }else if(collider.gameObject.CompareTag("border")){
+			 Destroy(this.gameObject);
+		}
 
     }
 

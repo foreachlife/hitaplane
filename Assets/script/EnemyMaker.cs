@@ -32,7 +32,7 @@ public class EnemyMaker : MonoBehaviour
         int i = num % 2;
         int x = i == 1 ? -60 : 520;
         int y = Random.Range(420, 880);
-        if(num<=20){
+        if(num>=10){
         GameObject g = Instantiate(enemy, new Vector3(x, y), bg.rotation);
         g.GetComponent<Image>().sprite = enemys[0];
         g.transform.SetParent(bg);

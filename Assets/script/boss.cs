@@ -34,7 +34,6 @@ public class boss : MonoBehaviour
         {
             if (isleft)
             {
-                print("right");
                 if (x > 340)
                 {
                     isleft = false;
@@ -46,7 +45,6 @@ public class boss : MonoBehaviour
             }
             else if (!isleft)
             {
-                print("left");
                 if (x < 120)
                 {
                     isleft = true;
@@ -64,7 +62,6 @@ public class boss : MonoBehaviour
         if (collider.gameObject.CompareTag("bullet"))
         {
             life--;
-            print("life: " + life);
             if (life <= 0)
             {
                 InvokeRepeating("deadBoss", 0, 1f);

@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-
         transform.Translate(new Vector2(x, y) * speed * Time.deltaTime);
     }
 
@@ -44,15 +43,12 @@ public class Enemy : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("bullet"))
         {
-            
             life--;
             if (life <= 0)
             {
                 InvokeRepeating("deadEnemy", 0, 0.1f);
             }
-
         }
-
     }
     void deadEnemy()
     {
