@@ -1,3 +1,3 @@
 # hitaplane
 hit a plane game
- 打飞机小游戏
+ 用unity写的打飞机小游戏
