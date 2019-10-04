@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+public class Enemy2 : MonoBehaviour {
 
-public class Enemy : MonoBehaviour
-{
 
-    public GameObject enemy;
+    public GameObject enemy2;
     private float speed = 3f;
     private float x;
     private float y;
 
-    public Sprite[] spritesOne;
+    public Sprite[] enemyImg2;
 
-    private int life = 5;
+    private int life = 10;
     private Transform bg;
     private int i = 0;
 
@@ -44,32 +43,24 @@ public class Enemy : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("bullet"))
         {
-            
             life--;
             if (life <= 0)
             {
                 InvokeRepeating("deadEnemy", 0, 0.1f);
             }
-
         }
-
     }
     void deadEnemy()
     {
         i++;
-        transform.GetComponent<Image>().sprite = spritesOne[i];
-        if (transform.GetComponent<Image>().sprite == spritesOne[3])
+        transform.GetComponent<Image>().sprite = enemyImg2[i];
+        if (transform.GetComponent<Image>().sprite == enemyImg2[3])
         {
             i = 0;
-            life = 5;
-            UiController.Instance.UpdateScore();
+            life = 10;
+            UiController.Instance.UpdateScore(500);
             CancelInvoke();
             Destroy(this.gameObject);
-            
         }
-        
-       
-       
-
     }
 }

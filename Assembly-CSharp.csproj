@@ -46,9 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\script\BadLand.cs" />
+     <Compile Include="Assets\script\BossMaker.cs" />
      <Compile Include="Assets\script\Bullet.cs" />
      <Compile Include="Assets\script\Enemy.cs" />
+     <Compile Include="Assets\script\Enemy2.cs" />
+     <Compile Include="Assets\script\EnemyMaker.cs" />
      <Compile Include="Assets\script\Food.cs" />
      <Compile Include="Assets\script\God.cs" />
      <Compile Include="Assets\script\Hero.cs" />

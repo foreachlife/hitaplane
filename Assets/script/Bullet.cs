@@ -48,6 +48,12 @@ public class Bullet : MonoBehaviour
             Weapon.bulletlist.Remove(this.gameObject);
             Destroy(this.gameObject);
            
+        }else  if (collider.gameObject.CompareTag("boss"))
+        {
+            AudioSource.PlayClipAtPoint(bulletKick,Vector3.zero);
+            Weapon.bulletlist.Remove(this.gameObject);
+            Destroy(this.gameObject);
+           
         }
         else if (collider.gameObject.CompareTag("border"))
         {
