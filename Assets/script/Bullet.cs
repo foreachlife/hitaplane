@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour
                 break;
         }
          transform.Translate(Vector2.up * speed * Time.deltaTime*8);
+         
     }
 
 

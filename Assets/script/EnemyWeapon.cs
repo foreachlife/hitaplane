@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeapon : MonoBehaviour {
- 
+public class EnemyWeapon : MonoBehaviour
+{
+
     public GameObject enemyBullet;
     private Transform bg;
     void Start()
-    {		
-		 bg = GameObject.Find("bg").transform;
-            makeEnemybullet();
+    {
+        bg = GameObject.Find("bg").transform;
+        makeEnemybullet();
     }
 
 
@@ -24,9 +25,18 @@ public class EnemyWeapon : MonoBehaviour {
     }
 
     void MakeEnemybullet()
-    {       
-        GameObject g = GameObject.Instantiate(enemyBullet, new Vector3(transform.position.x, transform.position.y-30, 0), transform.rotation);
-        g.transform.SetParent(bg);
-        
+    {
+        if (transform.tag == "boss")
+        {
+            GameObject g = GameObject.Instantiate(enemyBullet, new Vector3(transform.position.x, transform.position.y - 30, 0), transform.rotation);
+            g.transform.SetParent(bg);
+            g.transform.tag = "bossBullet";
+        }
+        else
+        {
+            GameObject g = GameObject.Instantiate(enemyBullet, new Vector3(transform.position.x, transform.position.y - 30, 0), transform.rotation);
+            g.transform.SetParent(bg);
+        }
+
     }
 }

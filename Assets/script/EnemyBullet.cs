@@ -10,7 +10,11 @@ public class EnemyBullet : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       transform.Translate(Vector2.down*300* Time.deltaTime);
+      if(transform.tag=="bossBullet"){
+            print("--------boss------");
+      }else{
+           transform.Translate(Vector2.down*300* Time.deltaTime);
+      }
     }
 
 
