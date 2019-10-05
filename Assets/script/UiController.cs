@@ -30,14 +30,12 @@ public class UiController : MonoBehaviour {
 
 
 	public void startGame(){
-		print("start game");
 		UnityEngine.SceneManagement.SceneManager.LoadScene(1);
 	}
 
 	public void UpdateScore(int s = 100)
     {
         score += s;
-		print("score: "+score);
         scoreText.text = "score \n" + score;
     }
 }

@@ -6,64 +6,87 @@ public class Bullet : MonoBehaviour
 
     private float speed = 100;
 
-    public static bool fireOpen = false;
-
-
     public AudioClip bulletKick;
-    public int x = 0;
 
-    public int y = 1;
-
+    public static bool alive=true;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (transform.tag == "bullet"&&alive)
         {
-            speed = speed * 3;
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                speed = speed * 3;
+            }
+            {
+                float res = Hero.getHero.transform.position.x - transform.position.x;
+                int result = res > 0 ? 1 : res < 0 ? -1 : 0;
+                switch (result)
+                {
+                    case -1:
+                        transform.Translate(new Vector2(0, 11) * speed * Time.deltaTime);
+                        break;
+                    case 1:
+                        transform.Translate(new Vector2(0, 11) * speed * Time.deltaTime);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            transform.Translate(Vector2.up * speed * Time.deltaTime * 8);
         }
-        float res = Weapon.GetWeapon.transform.position.x-transform.position.x;
-        int result = res > 0 ? 1 : res < 0 ? -1 : 0;
-        switch (result)
+        else if (alive&&transform.tag == "enemyBullet")
         {
-            case -1:
-                transform.Translate(new Vector2(0, 11) * speed * Time.deltaTime);
-                break;
-            case  1:
-                transform.Translate(new Vector2(0,11) * speed * Time.deltaTime);
-                break;
-            default:
-               
-                break;
+            transform.Translate(Vector2.down * 300 * Time.deltaTime);
+        }else if (alive&&transform.tag == "bossBullet")
+        {
+            float res = Hero.getHero.transform.position.x - transform.position.x;
+                int result = res > 0 ? 1 : res < 0 ? -1 : 0;
+                switch (result)
+                {
+                    case -1:
+                        transform.Translate(new Vector2(-1, -11) * 10 * Time.deltaTime);
+                        break;
+                    case 1:
+                        transform.Translate(new Vector2(1, -11) * 10 * Time.deltaTime);
+                        break;
+                    default:
+                        break;
+                }
         }
-         transform.Translate(Vector2.up * speed * Time.deltaTime*8);
-         
+
     }
 
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (transform.tag == "bullet")
+        {
+            if (collider.gameObject.CompareTag("enemy")||collider.gameObject.CompareTag("enemy2")||collider.gameObject.CompareTag("boss"))
+            {
+                AudioSource.PlayClipAtPoint(bulletKick, Vector3.zero);
+                Destroy(this.gameObject);
+            }
+            else if (collider.gameObject.CompareTag("border"))
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        else if (transform.tag == "enemyBullet" || transform.tag == "bossBullet")
+        {
+            if (collider.gameObject.CompareTag("border"))
+            {
+                AudioSource.PlayClipAtPoint(bulletKick, Vector3.zero);
+                Destroy(this.gameObject);
+            }
+            else if (collider.gameObject.CompareTag("hero"))
+            {
+                AudioSource.PlayClipAtPoint(bulletKick, Vector3.zero);
+                Destroy(this.gameObject);
+            }
+        }
 
-        if (collider.gameObject.CompareTag("enemy"))
-        {
-            AudioSource.PlayClipAtPoint(bulletKick,Vector3.zero);
-            Weapon.bulletlist.Remove(this.gameObject);
-            Destroy(this.gameObject);
-           
-        }else  if (collider.gameObject.CompareTag("boss"))
-        {
-            AudioSource.PlayClipAtPoint(bulletKick,Vector3.zero);
-            Weapon.bulletlist.Remove(this.gameObject);
-            Destroy(this.gameObject);
-           
-        }
-        else if (collider.gameObject.CompareTag("border"))
-        {
-            Weapon.bulletlist.Remove(this.gameObject);
-            Destroy(this.gameObject);
-        } else if (collider.gameObject.CompareTag("boss"))
-        {
-            Destroy(this.gameObject);
-        }
 
     }
 }

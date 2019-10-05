@@ -162,23 +162,27 @@ public class Hero : MonoBehaviour
         else if (collider.gameObject.CompareTag("enemyBullet"))
         {
             Die();
+        }else if (collider.gameObject.CompareTag("bossBullet"))
+        {
+            Die();
         }
 
     }
 
     void Die()
     {
-        print("-----------------die--------------------");
         hero = gameObject.transform.localPosition;
         gameObject.transform.localPosition = new Vector3(hero.x + x, hero.y + y, hero.z);
-        Destroy(this);
         int score = UiController.Instance.score;
         PlayerPrefs.SetInt("lastScore", score);
-
+        Bullet.alive=false;
+        // foreach(GameObject g in Weapon.enemyBullet)
+        Destroy(this);
         if (PlayerPrefs.GetInt("bestScore") < score)
         {
             PlayerPrefs.SetInt("bestScore", score);
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+       
     }
 }

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class bgMove : MonoBehaviour {
 
-    private Transform bg;
-
     private float x;
     private float y;
 
-private Material m_material;
+    private Material m_material;
     void Start()
     {
-        bg = GameObject.Find("bg").transform;
-		
        
     }
 

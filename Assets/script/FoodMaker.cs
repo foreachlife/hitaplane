@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class God : MonoBehaviour
-{
+public class FoodMaker : MonoBehaviour {
 
-    // Use this for initialization
 
     public GameObject propOne;
 
@@ -16,21 +14,21 @@ public class God : MonoBehaviour
         bg = GameObject.Find("bg").transform;
         makeFood();
     }
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
+	
     void makeFood()
     {
         if (Random.Range(1, 10) > 1)
         {
-            GameObject One = Instantiate(propOne, new Vector3(Random.Range(0, 400), 900), transform.rotation);
-            One.transform.SetParent(bg);
+            GameObject prop1 = Instantiate(propOne, new Vector3(Random.Range(0, 400), 900), transform.rotation);
+            prop1.transform.SetParent(bg);
         }
 
     }
-
-
 }

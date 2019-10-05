@@ -17,10 +17,8 @@ public class Weapon : MonoBehaviour
     }
 
     private Transform bg;
-    public bool isfireOpen = false;
+    public static bool isfireOpen = false;
     public float shootRate = 0.5f;
-    public static List<GameObject> bulletlist = new List<GameObject>();
-    private
 
     void Awake()
     {
@@ -29,13 +27,22 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         bg = GameObject.Find("bg").transform;
+        if (transform.tag == "hero")
+        {   
             makeBullet();
+        }
+        else if (transform.tag == "enemy" || transform.tag == "boss")
+        {
+            makeEnemybullet();
+        }
     }
 
 
     void Update()
     {
-
+        if(isfireOpen){
+            
+        }
     }
     void makeBullet()
     {
@@ -50,17 +57,48 @@ public class Weapon : MonoBehaviour
             {
                 GameObject g = GameObject.Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 30, 0), transform.rotation);
                 g.transform.SetParent(bg);
-                bulletlist.Add(g);
                 int s = -20 + i * 20;
+                g.transform.tag = "bullet";
                 g.transform.SetPositionAndRotation(new Vector3(transform.position.x + s, transform.position.y, 0), transform.rotation);
+
             }
         }
         else
         {
             GameObject g = GameObject.Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 30, 0), transform.rotation);
             g.transform.SetParent(bg);
+            g.transform.tag = "bullet";
         }
 
+
+    }
+
+
+    void makeEnemybullet()
+    {
+        InvokeRepeating("MakeEnemybullet", 0, 2f);
+    }
+
+    void MakeEnemybullet()
+    {
+        if (transform.tag == "boss")
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject g = GameObject.Instantiate(bullet, new Vector3(transform.position.x, transform.position.y - 50, 0), transform.rotation);
+                g.transform.SetParent(bg);
+                int s = -30 + i * 30;
+                g.transform.tag = "bossBullet";
+                g.transform.SetPositionAndRotation(new Vector3(transform.position.x + s, transform.position.y, 0), transform.rotation);
+
+            }
+        }
+        else
+        {
+            GameObject g = GameObject.Instantiate(bullet, new Vector3(transform.position.x, transform.position.y - 30, 0), transform.rotation);
+            g.transform.SetParent(bg);
+            g.transform.tag = "enemyBullet";
+        }
 
     }
 }
